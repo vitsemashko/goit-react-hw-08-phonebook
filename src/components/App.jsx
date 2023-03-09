@@ -16,6 +16,7 @@ const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
 const LoginPage = lazy(() => import('../pages/Login'));
 const ContactsPage = lazy(() => import('../pages/Contacts'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const App = () => {
   ) : (
     <Suspense>
       <Routes>
+        <Route path="*" element={<NotFoundPage />}></Route>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route

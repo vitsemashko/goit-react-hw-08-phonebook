@@ -1,6 +1,7 @@
-import css from './Welcome.module.css';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { Link } from 'react-router-dom';
+import css from './Welcome.module.css';
 
 const Welcome = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -10,9 +11,14 @@ const Welcome = () => {
       {!isLoggedIn && (
         <p>
           Please,
-          <span className={css.welcomeSpan}>Register</span> or
-          <span className={css.welcomeSpan}>Log In</span> to get access to
-          Contacts
+          <Link to="/register" className={css.welcomeSpan}>
+            Register
+          </Link>{' '}
+          or
+          <Link to="/login" className={css.welcomeSpan}>
+            Log In
+          </Link>{' '}
+          to get access to Contacts
         </p>
       )}
     </div>

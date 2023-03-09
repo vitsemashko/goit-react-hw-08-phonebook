@@ -1,8 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
+import { selectError } from 'redux/auth/selectors';
+
 import css from './LoginForm.module.css';
 
 const LoginForm = () => {
+  const loginError = useSelector(selectError);
   const dispatch = useDispatch();
 
   const submitHandler = e => {
@@ -16,7 +19,6 @@ const LoginForm = () => {
         password: form.elements.password.value,
       })
     );
-    form.reset();
   };
 
   return (
@@ -38,6 +40,7 @@ const LoginForm = () => {
       </label>
 
       <button>Log In</button>
+      {loginError && <p style={{ color: 'tomato' }}>Login failed</p>}
     </form>
   );
 };

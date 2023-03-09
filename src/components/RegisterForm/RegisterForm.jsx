@@ -1,10 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from 'redux/auth/operations';
+import { selectError } from 'redux/auth/selectors';
 import css from './RegisterForm.module.css';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-
+  const registerError = useSelector(selectError);
   const submitHandler = e => {
     e.preventDefault();
 
@@ -17,7 +18,6 @@ const RegisterForm = () => {
         password: form.elements.password.value,
       })
     );
-    form.reset();
   };
 
   return (
@@ -50,6 +50,7 @@ const RegisterForm = () => {
       </label>
 
       <button type="submit">Sign up</button>
+      {registerError && <p style={{ color: 'tomato' }}>Registration failed</p>}
     </form>
   );
 };
