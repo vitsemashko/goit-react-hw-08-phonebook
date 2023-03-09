@@ -9,10 +9,14 @@ import css from './ContactForm.module.css';
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [isAlert, setIsAlert] = useState(false);
   const contacts = useSelector(getContacts);
   const isLoaded = useSelector(getIsLoading);
   const dispatch = useDispatch();
   const notify = () => {
+    if (isAlert) {
+      return;
+    }
     toast.info('Contact added', {
       position: 'top-right',
       autoClose: 2000,
@@ -38,6 +42,7 @@ const ContactForm = () => {
       setName('');
       setNumber('');
     } else {
+      setIsAlert(true);
       alert(`${form.name.value} is already in contact list`);
     }
   };
