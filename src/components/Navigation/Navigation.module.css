@@ -1,0 +1,7 @@
+.navWrapper {
+  display: flex;
+  gap: 10px;
+}
+.navLink {
+  color: #333;
+}
